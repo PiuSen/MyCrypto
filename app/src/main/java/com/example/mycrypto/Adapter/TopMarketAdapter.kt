@@ -33,7 +33,7 @@ class TopMarketAdapter(var context: Context,val mlist:List<CryptoCurrency>):Recy
         Glide.with(context).load("https://s2.coinmarketcap.com/static/img/coins/64x64/"+item.id+".png")
             .thumbnail(Glide.with(context).load(R.drawable.loading))
             .into(holder.binding.topCurrencyImageView)
-        if(item.quotes!![0].percentChange24h>0){
+        if(item.quotes[0].percentChange24h>0){
             holder.binding.topCurrencyChangeTextView.setTextColor(context.resources.getColor(R.color.green))
             holder.binding.topCurrencyChangeTextView.text="+${item.quotes[0].percentChange24h}%"
 
