@@ -153,7 +153,8 @@ class DetailsFragment : Fragment() {
         fourHour.background=null
     }
 
-    private fun loadChart(data: CryptoCurrency) {
+
+    private fun loadChart(item: CryptoCurrency) {
         binding.detaillChartWebView.settings.javaScriptEnabled=true
         binding.detaillChartWebView.setLayerType(View.LAYER_TYPE_SOFTWARE,null)
         binding.detaillChartWebView.loadUrl("https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76d87&symbol"
@@ -169,7 +170,7 @@ class DetailsFragment : Fragment() {
             .thumbnail(Glide.with(requireContext()).load(R.drawable.loading))
             .into(binding.detailImageView)
         binding.detailPriceTextView.text="${String.format("$%.4f",data.quotes[0].price)}"
-        if(data.quotes!![0].percentChange24h>0){
+        if(data.quotes[0].percentChange24h>0){
             binding.detailChangeTextView.setTextColor(requireContext().resources.getColor(R.color.green))
             binding.detailChangeImageView.setImageResource(R.drawable.caret_up)
             binding.detailChangeTextView.text="+${String.format(".02f",data.quotes[0].percentChange24h)}%"

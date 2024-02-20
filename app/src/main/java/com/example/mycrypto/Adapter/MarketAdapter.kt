@@ -48,7 +48,7 @@ class MarketAdapter(var context: Context, var mlist: List<CryptoCurrency>, var t
             .into(holder.binding.currencyChartImageView)
         holder.binding.currencyPriceTextView.text="${String.format("$%.02f",item.quotes[0].price)}"
 
-        if(item.quotes!![0].percentChange24h>0){
+        if(item.quotes[0].percentChange24h>0){
             holder.binding.currencyChangeTextView.setTextColor(context.resources.getColor(R.color.green))
             holder.binding.currencyChangeTextView.text="+${String.format(".02f",item.quotes[0].percentChange24h)}%"
 

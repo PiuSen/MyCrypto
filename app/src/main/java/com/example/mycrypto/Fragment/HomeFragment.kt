@@ -1,21 +1,23 @@
 package com.example.mycrypto.Fragment
 
-import android.content.ContentValues.TAG
+import android.R
 import android.os.Bundle
-import android.service.voice.VoiceInteractionSession.VisibleActivityCallback
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+
 import androidx.viewpager2.widget.ViewPager2
+
 import com.example.mycrypto.Adapter.TopMarketAdapter
 import com.example.mycrypto.GainLoseAdapter
-import com.example.mycrypto.R
+import com.example.mycrypto.Model.CryptoCurrency
+
 import com.example.mycrypto.Retrofit.ApiInstance
 import com.example.mycrypto.Retrofit.ApiInterface
 import com.example.mycrypto.databinding.FragmentHomeBinding
@@ -23,11 +25,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.create
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var mlist:List<CryptoCurrency>
+
+    private lateinit var adapter: TopMarketAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,10 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=FragmentHomeBinding.inflate(layoutInflater)
+        mlist= listOf()
+        adapter= TopMarketAdapter(requireContext(),mlist)
+        binding.topCurrencyRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.topCurrencyRecyclerView.adapter=adapter
 
         getTopCurrency()
         setTabLayout()
@@ -66,7 +74,7 @@ class HomeFragment : Fragment() {
         })
         TabLayoutMediator(binding.tabLayout,binding.contentViewPager){
             tab,position->
-            var title=if(position==0){
+            val title=if(position==0){
                 "Top Gainers"
             }
             else{
@@ -82,6 +90,7 @@ class HomeFragment : Fragment() {
            withContext(Dispatchers.Main){
                binding.topCurrencyRecyclerView.adapter=TopMarketAdapter(requireContext(),result.body()!!.data.cryptoCurrencyList)
            }
+           Log.d("Piu","getTopCurrencyList: ${result.body()!!.data.cryptoCurrencyList}")
 
 
        }

@@ -20,44 +20,45 @@
 
 
 
-        <androidx.appcompat.widget.SearchView
+<!--        <EditText-->
+<!--            android:id="@+id/searchView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--           app:queryHint="Search Here..."-->
+<!--            app:iconifiedByDefault="false"-->
+<!--            android:layout_margin="12dp"-->
+<!--            android:paddingStart="5dp"-->
+<!--            android:paddingEnd="5dp"-->
+<!--            android:padding="8dp"-->
+<!--            android:background="@drawable/search"-->
+
+<!--            tools:ignore="MissingConstraints,NotSibling" />-->
+
+
+
+
+        <EditText
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           app:queryHint="Search Here..."
-            app:iconifiedByDefault="false"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:background="#CFC8C8"
+            android:hint="Search Here"
+            android:inputType="text"
+            android:paddingStart="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="14sp"
             android:layout_margin="12dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:background="@drawable/search"
-
-            tools:ignore="MissingConstraints,NotSibling" />
-
-
-
-
-<!--        <EditText-->
-<!--            android:id="@+id/searchEditText"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="12dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:ems="10"-->
-<!--            android:background="#A57F7F"-->
-<!--            android:hint="Search Here"-->
-<!--            android:inputType="text"-->
-<!--            android:paddingStart="20dp"-->
-<!--            android:paddingTop="12dp"-->
-<!--            android:paddingBottom="12dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textColorHint="@color/white"-->
-<!--            android:textSize="14sp"-->
-<!--            android:layout_margin="12dp"-->
-<!--            android:drawableLeft="@drawable/baseline_search_24"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:autofillHints="" />-->
+            android:drawableLeft="@drawable/baseline_search_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/currencyRecyclerView"

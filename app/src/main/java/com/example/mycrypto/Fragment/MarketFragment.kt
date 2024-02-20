@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +24,7 @@ import java.util.Locale
 
 
 class MarketFragment : Fragment() {
-    private lateinit var binding:com.example.mycrypto.databinding.FragmentMarketBinding
+    private lateinit var binding:FragmentMarketBinding
     private lateinit var mlist:List<CryptoCurrency>
     private lateinit var adapter:MarketAdapter
 
@@ -41,6 +42,7 @@ class MarketFragment : Fragment() {
         mlist= listOf()
         adapter= MarketAdapter(requireContext(),mlist,"market")
         binding.currencyRecyclerView.adapter=adapter
+
         lifecycleScope.launch (Dispatchers.IO){
             val result=ApiInstance.getInstance().create(ApiInterface::class.java).getMarketData()
             if(result.body()!=null){
@@ -62,40 +64,24 @@ class MarketFragment : Fragment() {
     lateinit var searchText:String
 
     private fun searchCoin() {
-        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
 
-                return true
+
+        binding.searchView.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                searchText=newText.toString().lowercase(Locale.getDefault())
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                searchText=p0.toString().lowercase(Locale.getDefault())
                 updateRecyclerView()
-                return false
-
 
             }
 
         })
-
-//        binding.appBar.addTextChangedListener(object :TextWatcher{
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//            }
-//
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//            }
-//
-//            override fun afterTextChanged(p0: Editable?) {
-//                searchText=p0.toString().lowercase(Locale.getDefault())
-//                updateRecyclerView()
-//
-//            }
-//
-//        })
     }
 
     private fun updateRecyclerView() {
