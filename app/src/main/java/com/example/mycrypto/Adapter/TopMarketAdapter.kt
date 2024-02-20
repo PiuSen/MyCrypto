@@ -1,5 +1,6 @@
 package com.example.mycrypto.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class TopMarketAdapter(var context: Context,val mlist:List<CryptoCurrency>):Recy
        return  mlist.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item=mlist[position]
         holder.binding.topCurrencyNameTextView.text=item.name

@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import android.webkit.RenderProcessGoneDetail
 import androidx.lifecycle.lifecycleScope
 import com.example.mycrypto.Adapter.MarketAdapter
-import com.example.mycrypto.Adapter.TopMarketAdapter
 import com.example.mycrypto.Model.CryptoCurrency
 import com.example.mycrypto.R
 import com.example.mycrypto.Retrofit.ApiInstance

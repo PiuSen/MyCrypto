@@ -33,7 +33,7 @@ class DetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentDetailsBinding.inflate(layoutInflater)
-        val data:CryptoCurrency=item.data!!
+        val data=item.data!!
          setUpDetails(data)
         loadChart(data)
         addToWatchList(data)
@@ -41,8 +41,8 @@ class DetailsFragment : Fragment() {
         return  binding.root
     }
 
-    var watchList:ArrayList<String>?=null
-    var watchListChecked=false
+    private var watchList:ArrayList<String>?=null
+    private var watchListChecked=false
 
      private fun addToWatchList(data: CryptoCurrency) {
          readData()
@@ -121,7 +121,7 @@ class DetailsFragment : Fragment() {
 
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor", "SetJavaScriptEnabled")
     private fun loadChartData(
         it: View?,
         s: String,
@@ -154,6 +154,7 @@ class DetailsFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun loadChart(item: CryptoCurrency) {
         binding.detaillChartWebView.settings.javaScriptEnabled=true
         binding.detaillChartWebView.setLayerType(View.LAYER_TYPE_SOFTWARE,null)

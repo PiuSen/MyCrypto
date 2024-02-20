@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.Gain_LoseFragment">
+    tools:context=".Fragment.GainLoseFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/topGainLoseRecyclerView"
@@ -14,7 +14,7 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
        app:layout_constraintBottom_toBottomOf="parent"
-       tools:listitem="@layout/curency_item"
+       tools:listitem="@layout/currency_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

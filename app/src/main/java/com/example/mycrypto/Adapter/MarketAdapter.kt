@@ -1,5 +1,6 @@
 package com.example.mycrypto.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,20 +15,21 @@ import com.example.mycrypto.Fragment.MarketFragmentDirections
 import com.example.mycrypto.Fragment.WatchListFragmentDirections
 import com.example.mycrypto.Model.CryptoCurrency
 import com.example.mycrypto.R
-import com.example.mycrypto.databinding.CurencyItemBinding
+import com.example.mycrypto.databinding.CurrencyItemBinding
 
 class MarketAdapter(var context: Context, var mlist: List<CryptoCurrency>, var type: String):RecyclerView.Adapter<MarketAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
-        var binding=CurencyItemBinding.bind(itemView)
+        var binding=CurrencyItemBinding.bind(itemView)
 
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return  MyViewHolder(LayoutInflater.from(context).inflate(R.layout.curency_item,parent,false))
+        return  MyViewHolder(LayoutInflater.from(context).inflate(R.layout.currency_item,parent,false))
 
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(dataItem:List<CryptoCurrency>){
         mlist=dataItem
         notifyDataSetChanged()
@@ -61,22 +63,24 @@ class MarketAdapter(var context: Context, var mlist: List<CryptoCurrency>, var t
         }
 
         holder.itemView.setOnClickListener {
-            if(type=="home"){
+            when (type) {
+                "home" -> {
                     findNavController(it)
                         .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item))
 
 
                 }
-            else if(type=="market"){
-                findNavController(it)
-                    .navigate(MarketFragmentDirections.actionMarketFragmentToDetailsFragment(item))
+                "market" -> {
+                    findNavController(it)
+                        .navigate(MarketFragmentDirections.actionMarketFragmentToDetailsFragment(item))
 
 
-            }
-            else{
-                findNavController(it)
-                    .navigate(WatchListFragmentDirections.actionWatchListFragmentToDetailsFragment(item))
+                }
+                else -> {
+                    findNavController(it)
+                        .navigate(WatchListFragmentDirections.actionWatchListFragmentToDetailsFragment(item))
 
+                }
             }
 
         }
